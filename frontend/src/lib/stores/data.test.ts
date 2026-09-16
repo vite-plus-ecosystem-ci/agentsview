@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vite-plus/test";
 import type { DbProjectInventory, DbProjectInventoryRow } from "../api/generated/index";
 
 const api = vi.hoisted(() => ({
@@ -99,12 +99,18 @@ describe("hydrateFromUrl", () => {
   it("loads a chosen month and preserves its bounds when selecting projects", async () => {
     api.getApiV1DataProjects.mockResolvedValue(makeInventory([]));
     data.setDateSelection({ mode: "calendar", unit: "month", anchor: "2026-08-15" });
-    expect(api.getApiV1DataProjects).toHaveBeenLastCalledWith(expect.objectContaining({
-      date_from: "2026-08-01", date_to: "2026-08-31",
-    }), undefined);
+    expect(api.getApiV1DataProjects).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        date_from: "2026-08-01",
+        date_to: "2026-08-31",
+      }),
+      undefined,
+    );
     data.selectProject("k1");
     expect(routerMod.router.replaceParams).toHaveBeenLastCalledWith({
-      project_key: "k1", date_from: "2026-08-01", date_to: "2026-08-31",
+      project_key: "k1",
+      date_from: "2026-08-01",
+      date_to: "2026-08-31",
     });
     data.setDateSelection({ mode: "relative", days: 0 });
     expect(api.getApiV1DataProjects).toHaveBeenLastCalledWith({}, undefined);
