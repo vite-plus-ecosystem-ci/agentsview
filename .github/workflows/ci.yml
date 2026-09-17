@@ -28,6 +28,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Install lint tools
         run: |
@@ -47,12 +48,12 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7.0.0
         with:
           node-version: "24"
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          package-manager-cache: false
 
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -82,7 +83,7 @@ jobs:
         run: npm test
         working-directory: frontend
 
-  frontend-node-25:
+  frontend-node-26:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
@@ -91,9 +92,8 @@ jobs:
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7.0.0
         with:
-          node-version: "25"
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          node-version: "26"
+          package-manager-cache: false
 
       - name: Install frontend dependencies
         run: npm ci
@@ -155,6 +155,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: ${{ runner.os == 'macOS' }}
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -256,6 +257,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Setup MinGW
         id: setup_mingw
@@ -420,6 +422,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Setup MinGW
         id: setup_mingw
@@ -460,6 +463,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -542,6 +546,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Restore pricing snapshot
         run: go run ./internal/pricing/cmd/litellm-snapshot -restore
@@ -594,6 +599,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -604,8 +610,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7.0.0
         with:
           node-version: "24"
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          package-manager-cache: false
 
       - name: Install frontend dependencies
         run: npm ci

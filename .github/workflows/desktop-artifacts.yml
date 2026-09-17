@@ -54,6 +54,7 @@ jobs:
 
       - uses: ./.github/actions/build-desktop-artifact
         with:
+          namespace-cache: "false"
           bundle: ${{ matrix.bundle }}
           target_triple: ${{ matrix.target_triple }}
           artifact_name: ${{ matrix.artifact_name }}
