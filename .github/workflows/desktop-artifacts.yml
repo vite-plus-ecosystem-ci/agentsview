@@ -30,13 +30,13 @@ jobs:
       matrix:
         include:
           - name: Windows
-            os: namespace-profile-windows-8cpu
+            os: windows-latest
             bundle: nsis
             target_triple: ""
             artifact_name: agentsview-desktop-windows
             artifact_dir: desktop/src-tauri/target/release/bundle/nsis/
           - name: Linux
-            os: namespace-profile-linux-8cpu
+            os: ubuntu-latest
             bundle: appimage
             target_triple: ""
             artifact_name: agentsview-desktop-linux
