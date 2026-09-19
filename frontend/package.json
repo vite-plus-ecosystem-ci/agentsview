@@ -47,13 +47,13 @@
     "svelte": "5.57.0",
     "svelte-check": "4.7.6",
     "typescript": "6.0.3",
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.3.1",
-    "vite-plus": "0.3.1",
-    "vitest": "4.1.11"
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.0.0-commit.40ce1b34104d16f3c3a2d9fe8eb1b016f5a06b67",
+    "vite-plus": "0.0.0-commit.40ce1b34104d16f3c3a2d9fe8eb1b016f5a06b67",
+    "vitest": "5.0.1"
   },
   "overrides": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.3.1",
-    "vitest": "$vitest"
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.0.0-commit.40ce1b34104d16f3c3a2d9fe8eb1b016f5a06b67",
+    "vitest": "5.0.1"
   },
   "engines": {
     "node": ">=24.11.0"

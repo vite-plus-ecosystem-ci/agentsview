@@ -30,10 +30,6 @@ jobs:
           go-version-file: go.mod
           cache: false
 
-      - name: Configure Namespace Go cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -76,20 +72,10 @@ jobs:
           node-version: "24"
           package-manager-cache: false
 
-      - name: Configure Namespace npm cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: npm
-
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e  # v7.0.0
         with:
           go-version-file: go.mod
           cache: false
-
-      - name: Configure Namespace Go cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -119,8 +105,8 @@ jobs:
         run: npm test
         working-directory: frontend
 
-  frontend-node-25:
-    runs-on: namespace-profile-linux-8cpu
+  frontend-node-26:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
@@ -128,13 +114,8 @@ jobs:
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7.0.0
         with:
-          node-version: "25"
+          node-version: "26"
           package-manager-cache: false
-
-      - name: Configure Namespace npm cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: npm
 
       - name: Install frontend dependencies
         run: npm ci
@@ -197,12 +178,6 @@ jobs:
         with:
           go-version-file: go.mod
           cache: ${{ runner.os == 'macOS' }}
-
-      - name: Configure Namespace Go cache
-        if: runner.os != 'macOS'
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -310,11 +285,6 @@ jobs:
         with:
           go-version-file: go.mod
           cache: false
-
-      - name: Configure Namespace Go cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
 
       - name: Setup MinGW
         id: setup_mingw
@@ -481,11 +451,6 @@ jobs:
           go-version-file: go.mod
           cache: false
 
-      - name: Configure Namespace Go cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
-
       - name: Setup MinGW
         id: setup_mingw
         continue-on-error: true
@@ -526,11 +491,6 @@ jobs:
         with:
           go-version-file: go.mod
           cache: false
-
-      - name: Configure Namespace Go cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
 
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
@@ -621,11 +581,6 @@ jobs:
           go-version-file: go.mod
           cache: false
 
-      - name: Configure Namespace Go cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
-
       - name: Restore pricing snapshot
         run: go run ./internal/pricing/cmd/litellm-snapshot -restore
 
@@ -679,11 +634,6 @@ jobs:
           go-version-file: go.mod
           cache: false
 
-      - name: Configure Namespace Go cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: go
-
       - name: Prepare SQLite header
         if: runner.os == 'Linux'
         run: |
@@ -694,11 +644,6 @@ jobs:
         with:
           node-version: "24"
           package-manager-cache: false
-
-      - name: Configure Namespace npm cache
-        uses: namespacelabs/nscloud-cache-action@c5f8dab7560444c4bf8dbc64f1b203431873c547  # v1
-        with:
-          cache: npm
 
       - name: Install frontend dependencies
         run: npm ci
