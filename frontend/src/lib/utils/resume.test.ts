@@ -53,9 +53,13 @@ describe("buildResumeCommand", () => {
   });
 
   it("preserves remote Claude flags", () => {
-    expect(buildResumeCommand("claude", "devbox1~claude:abc-123", {
-      skipPermissions: true, forkSession: true, print: true,
-    })).toBe("claude --resume abc-123 --dangerously-skip-permissions --fork-session --print");
+    expect(
+      buildResumeCommand("claude", "devbox1~claude:abc-123", {
+        skipPermissions: true,
+        forkSession: true,
+        print: true,
+      }),
+    ).toBe("claude --resume abc-123 --dangerously-skip-permissions --fork-session --print");
   });
   it("generates claude resume command", () => {
     expect(buildResumeCommand("claude", "abc-123-def")).toBe("claude --resume abc-123-def");
@@ -73,9 +77,7 @@ describe("buildResumeCommand", () => {
   });
 
   it("generates augure-code resume command with the vendor CLI name", () => {
-    expect(buildResumeCommand("augure-code", "augure-code:sess-1")).toBe(
-      "augure resume sess-1",
-    );
+    expect(buildResumeCommand("augure-code", "augure-code:sess-1")).toBe("augure resume sess-1");
     expect(buildResumeCommand("augure-code", "augure-code:run-1", { model: "ossington-5" })).toBe(
       "augure resume run-1 -m ossington-5",
     );
@@ -120,9 +122,9 @@ describe("buildResumeCommand", () => {
   });
 
   it("generates kiro resume command", () => {
-    expect(
-      buildResumeCommand("kiro", "kiro:session-1"),
-    ).toBe("kiro-cli chat --resume-id session-1");
+    expect(buildResumeCommand("kiro", "kiro:session-1")).toBe(
+      "kiro-cli chat --resume-id session-1",
+    );
   });
 
   it("returns null for pi (server-only resume)", () => {
@@ -221,10 +223,22 @@ describe("buildResumeCommand", () => {
 
 describe("formatResumeResponseCommand", () => {
   it.each([
-    ["claude", "cd '/remote/project' && claude --resume abc-123", "cd '/remote/project' && claude --resume abc-123"],
-    ["kiro", "cd '/remote/project' && kiro-cli chat --resume-id abc-123", "cd '/remote/project' && kiro-cli chat --resume-id abc-123"],
+    [
+      "claude",
+      "cd '/remote/project' && claude --resume abc-123",
+      "cd '/remote/project' && claude --resume abc-123",
+    ],
+    [
+      "kiro",
+      "cd '/remote/project' && kiro-cli chat --resume-id abc-123",
+      "cd '/remote/project' && kiro-cli chat --resume-id abc-123",
+    ],
     ["pi", "cd '/project' && pi --session session-1", "cd '/project' && pi --session session-1"],
-    ["cursor", "cursor agent --resume abc-123", "cd '/remote/project' && cursor agent --resume abc-123"],
+    [
+      "cursor",
+      "cursor agent --resume abc-123",
+      "cd '/remote/project' && cursor agent --resume abc-123",
+    ],
     ["codex", "codex resume abc-123", "codex resume abc-123"],
   ])("remote cwd formatting for %s", (agent, command, expected) => {
     expect(formatResumeResponseCommand(agent, { command, cwd: "/remote/project" })).toBe(expected);

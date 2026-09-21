@@ -47,16 +47,16 @@
     "svelte": "5.57.0",
     "svelte-check": "4.7.6",
     "typescript": "6.0.3",
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.3.1",
-    "vite-plus": "0.3.1",
-    "vitest": "4.1.11"
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.0.0-commit.6b26ec56e76df770e2aa5ad78571d42d20b5383c",
+    "vite-plus": "0.0.0-commit.6b26ec56e76df770e2aa5ad78571d42d20b5383c",
+    "vitest": "5.0.1"
   },
   "overrides": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.3.1",
-    "vitest": "$vitest"
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.0.0-commit.6b26ec56e76df770e2aa5ad78571d42d20b5383c",
+    "vitest": "5.0.1"
   },
   "engines": {
     "node": ">=24.11.0"
   },
-  "packageManager": "npm@12.0.2"
+  "packageManager": "npm@11.12.1"
 }
