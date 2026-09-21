@@ -53,7 +53,10 @@ export default defineConfig(({ command }) => {
   const liveDevelopment = command === "serve" && !process.env.VITEST;
   const devTranslations = fileURLToPath(new URL("./.paraglide/dev/", import.meta.url));
   return {
-    fmt: {},
+    fmt: {
+      // This raw fixture has byte-length assertions; preserve its exact source bytes.
+      ignorePatterns: ["src/lib/utils/__fixtures__/retained-tool-image-1735.json"],
+    },
     lint: {
       jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
       rules: {
